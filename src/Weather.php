@@ -14,17 +14,7 @@ class Weather
     {
         $this->key = $key;
     }
-
-    /*public function getHttpClient()
-    {
-        return new Client($this->guzzleOptions);
-    }
-
-    public function setGuzzleOptions($options)
-    {
-        $this->guzzleOptions = $options;
-    }*/
-
+    
     public function getWeather($city, $extensions = "base", $output = "json")
     {
         $url = "https://restapi.amap.com/v3/weather/weatherInfo";
@@ -37,7 +27,7 @@ class Weather
             throw new InvalidArgumentException('不合法的请求参数: ' . $output);
         }
 
-        $params = [
+        $query = [
             'key' => $this->key,
             'city' => $city,
             'extensions' => strtolower($extensions),
@@ -46,7 +36,7 @@ class Weather
 
         try {
             $httpClient = new Client();
-            $response = $httpClient->get($url, ['params' => $params])->getBody()->getContents();
+            $response = $httpClient->get($url, compact('query'))->getBody()->getContents();
 
             return $output === 'json' ? json_decode($response, true) : $response;
         } catch (\Exception $exception) {
