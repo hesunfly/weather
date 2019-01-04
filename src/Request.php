@@ -3,10 +3,15 @@
 namespace Hesunfly\Weather;
 
 use GuzzleHttp\Client;
+use Hesunfly\Weather\Exception\HttpException;
 
-class Request
+trait Request
 {
     protected $client;
+
+    public $statusCode;
+
+    public $header;
 
     public function __construct()
     {
@@ -15,12 +20,26 @@ class Request
 
     public function get($url, $query)
     {
-        $response = $this->client->get($url, ['query' => $query]);
+        try {
+            $response = $this->client->get($url, ['query' => $query]);
 
-        return [
-            'statusCode' => $response->getStatusCode(),
-            'header' => $response->getHeader('content-type'),
-            'body' => $response->getBody()->getContents()
-        ];
+            $this->statusCode = $response->getStatusCode();
+            $this->header = $response->getHeader('content-type');
+
+            return $response->getBody()->getContents();
+        } catch (\Exception $exception) {
+            throw new HttpException($exception->getMessage(), $exception->getCode(), $exception);
+        }
     }
+
+    public function statusCode()
+    {
+        return $this->statusCode;
+    }
+
+    public function header()
+    {
+        return $this->header;
+    }
+
 }
