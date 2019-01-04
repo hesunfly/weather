@@ -37,10 +37,8 @@ class Weather
         ];
 
         try {
-//            $httpClient = new Client();
-//            $response = $httpClient->get($url, compact('query'))->getBody()->getContents();
             $response = $this->get($url, $params);
-            return $output === 'json' ? json_decode($response[''], true) : $response;
+            return $output === 'json' ? json_decode($response, true) : $response;
         } catch (\Exception $exception) {
             throw new HttpException($exception->getMessage(), $exception->getCode(), $exception);
         }
