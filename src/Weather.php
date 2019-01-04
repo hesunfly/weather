@@ -2,9 +2,7 @@
 
 namespace Hesunfly\Weather;
 
-use GuzzleHttp\Client;
-use Hesunfly\Weather\Exception\HttpException;
-use Hesunfly\Weather\Exception\InvalidArgumentException;
+use Hesunfly\Weather\Exceptions\InvalidArgumentException;
 
 class Weather
 {
@@ -36,12 +34,10 @@ class Weather
             'output' => strtolower($output)
         ];
 
-        try {
-            $response = $this->get($url, $params);
-            return $output === 'json' ? json_decode($response, true) : $response;
-        } catch (\Exception $exception) {
-            throw new HttpException($exception->getMessage(), $exception->getCode(), $exception);
-        }
+        $response = $this->get($url, $params);
+
+        return $output === 'json' ? json_decode($response, true) : $response;
+
     }
 }
 

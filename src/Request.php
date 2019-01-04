@@ -3,7 +3,7 @@
 namespace Hesunfly\Weather;
 
 use GuzzleHttp\Client;
-use Hesunfly\Weather\Exception\HttpException;
+use Hesunfly\Weather\Exceptions\HttpException;
 
 trait Request
 {

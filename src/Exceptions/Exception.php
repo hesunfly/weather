@@ -1,6 +1,6 @@
 <?php
 
-namespace Hesunfly\Weather\Exception;
+namespace Hesunfly\Weather\Exceptions;
 
 class Exception extends \Exception
 {
