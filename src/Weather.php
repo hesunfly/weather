@@ -14,7 +14,7 @@ class Weather
     {
         $this->key = $key;
     }
-    
+
     public function getWeather($city, $extensions = "base", $output = "json")
     {
         $url = "https://restapi.amap.com/v3/weather/weatherInfo";
@@ -36,7 +36,7 @@ class Weather
 
         try {
             $httpClient = new Client();
-            $response = $httpClient->get($url, compact('query'))->getBody()->getContents();
+            $response = $httpClient->get($url, compact('query'))->getBody();
 
             return $output === 'json' ? json_decode($response, true) : $response;
         } catch (\Exception $exception) {
