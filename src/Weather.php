@@ -37,7 +37,6 @@ class Weather
         $response = $this->get($url, $params);
 
         return $output === 'json' ? json_decode($response, true) : $response;
-
     }
 }
 
