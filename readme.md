@@ -23,7 +23,7 @@ use Hesunfly\Weather\Weather;
 
 $weather = new Weather('高德地图key');
 
-$weather->getWeather('城市名称');
+$weather->currenct('城市名称');
 ```
 
 2. 获取预告天气：
@@ -33,7 +33,7 @@ use Hesunfly\Weather\Weather;
 
 $weather = new Weather('高德地图key');
 
-$weather->getWeather('城市名称', 'all');
+$weather->forecast('城市名称');
 ```
 
 3. 获取xml形式的数据：
@@ -43,13 +43,8 @@ use Hesunfly\Weather\Weather;
 
 $weather = new Weather('高德地图key');
 
-$weather->getWeather('城市名称', 'base', 'xml');
+$weather->currenct('城市名称', 'xml');
 ```
-
-参数说明：
-
-getWeather('城市名称', '返回天气类型：@base:实况天气；@all:预报天气'，'返回数据格式：@json; @xml')
-
 
 
 ## License
