@@ -7,16 +7,16 @@ use Hesunfly\Weather\Exceptions\HttpException;
 
 trait Request
 {
-    public $statusCode;
+    protected $statusCode;
 
-    public $header;
+    protected $header;
 
-    public function httpClient()
+    protected function httpClient()
     {
        return new Client();
     }
 
-    public function get($url, $query)
+    protected function get($url, $query)
     {
         try {
             $response = $this->httpClient()->get($url, ['query' => $query]);
@@ -29,12 +29,12 @@ trait Request
         }
     }
 
-    public function statusCode()
+    protected function statusCode()
     {
         return $this->statusCode;
     }
 
-    public function header()
+    protected function header()
     {
         return $this->header;
     }

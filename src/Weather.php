@@ -8,21 +8,28 @@ class Weather
 {
     use Request;
 
-    protected $key = null;
+    private $key = null;
+
+    private $url = "https://restapi.amap.com/v3/weather/weatherInfo";
 
     public function __construct($key)
     {
         $this->key = $key;
     }
 
-    public function getWeather($city, $extensions = "base", $output = "json")
+    public function currenct($city, $output = "json")
     {
-        $url = "https://restapi.amap.com/v3/weather/weatherInfo";
+        return $this->weather($city, 'base', $output);
+    }
 
-        if (!in_array(strtolower($extensions), ['base', 'all'])) {
-            throw new InvalidArgumentException('不合法的请求参数: ' . $extensions);
-        }
 
+    public function forecast($city, $output = "json")
+    {
+        return $this->weather($city, 'all', $output);
+    }
+
+    private function weather($city, $type, $output)
+    {
         if (!in_array(strtolower($output), ['json', 'xml'])) {
             throw new InvalidArgumentException('不合法的请求参数: ' . $output);
         }
@@ -30,11 +37,11 @@ class Weather
         $params = [
             'key' => $this->key,
             'city' => $city,
-            'extensions' => strtolower($extensions),
+            'extensions' => $type,
             'output' => strtolower($output)
         ];
 
-        $response = $this->get($url, $params);
+        $response = $this->get($this->url, $params);
 
         return $output === 'json' ? json_decode($response, true) : $response;
     }
