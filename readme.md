@@ -2,6 +2,8 @@
 
 PHP天气查询扩展组件
 
+![StyleCI build status](https://github.styleci.io/repos/164047270/shield) 
+
 #### 安装
 
 ```
