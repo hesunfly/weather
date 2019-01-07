@@ -13,7 +13,7 @@ trait Request
 
     protected function httpClient()
     {
-       return new Client();
+        return new Client();
     }
 
     protected function get($url, $query)
@@ -38,5 +38,4 @@ trait Request
     {
         return $this->header;
     }
-
 }
