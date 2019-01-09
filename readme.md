@@ -4,17 +4,17 @@ PHP天气查询扩展组件
 
 ![StyleCI build status](https://github.styleci.io/repos/164047270/shield) 
 
-#### 安装
+### 安装
 
 ```
 composer require hesunfly/weather
 ```
 
-#### 使用
+### 使用
 
 使用前需要在高德地图开放平台申请天气查询接口的key
 
-##### 代码示例
+### 代码示例
 
 基本使用：
 
@@ -49,6 +49,6 @@ $weather->currenct('城市名称', 'xml');
 ```
 
 
-## License
+### License
 
 MIT
